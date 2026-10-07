@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-import requests;
 conn = st.connection("snowflake")
 import numpy as np
+import requests
 
 from snowflake.snowpark.functions import col
 
@@ -44,14 +44,11 @@ if ingredients_list:
     time_to_insert = st.button('Submit Order')
 
     if time_to_insert:
-    session.sql(my_insert_stmt).collect()
-
-    st.success("Your Smoothie is ordered!", icon="✅")
+        session.sql(my_insert_stmt).collect()
+        st.success("Your Smoothie is ordered!", icon="✅")
 
 smoothiefroot_response = requests.get(
     "https://my.smoothiefroot.com/api/fruit/watermelon"
 )
 
 st.write(smoothiefroot_response.json())
-
-
